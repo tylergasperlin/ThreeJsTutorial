@@ -11,9 +11,13 @@ const camera = new THREE.PerspectiveCamera(
 )
 camera.position.z = 2
 
-const renderer = new THREE.WebGLRenderer()
+// there is a canvas element called c1 in index.html -- this is how three js gets loaded into the dom
+const canvas = document.getElementById("c1") as HTMLCanvasElement;
+const renderer = new THREE.WebGLRenderer({canvas: canvas})
+
+// initial set width of canvas
 renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
+
 
 // allows you to interact with 3d object by using mouse 
 new OrbitControls(camera, renderer.domElement)
@@ -27,6 +31,7 @@ const material = new THREE.MeshBasicMaterial({
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
 
+// resize to fit the screen when user resizes screen
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight
