@@ -3,3 +3,15 @@ body{
     margin: 0px;
 }
 
+#debug1 {
+    font-family: monospace;
+    font-size: larger;
+    position: absolute;
+    left: 0px;
+    top: 50px;
+    border: 1px solid red;
+    width: 180px;
+    height: 220px;
+    color: white;
+    pointer-events: none;
+}
