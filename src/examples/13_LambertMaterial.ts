@@ -4,7 +4,7 @@ import Stats from 'three/examples/jsm/libs/stats.module'
 import { GUI } from 'dat.gui'
 
 const scene = new THREE.Scene()
-//scene.background = new THREE.Color(0xff0000)
+scene.background = new THREE.Color(0xff0000)
 
 scene.add(new THREE.AxesHelper(5))
 
@@ -34,12 +34,12 @@ const torusKnotGeometry = new THREE.TorusKnotGeometry()
 
 const material = new THREE.MeshLambertMaterial()
 
-const texture = new THREE.TextureLoader().load("img/grid.png")
-material.map = texture
-const envTexture = new THREE.CubeTextureLoader().load(["img/px_50.png", "img/nx_50.png", "img/py_50.png", "img/ny_50.png", "img/pz_50.png", "img/nz_50.png"])
-//envTexture.mapping = THREE.CubeReflectionMapping
-envTexture.mapping = THREE.CubeRefractionMapping
-material.envMap = envTexture
+// const texture = new THREE.TextureLoader().load("img/grid.png")
+// material.map = texture
+// const envTexture = new THREE.CubeTextureLoader().load(["img/px_50.png", "img/nx_50.png", "img/py_50.png", "img/ny_50.png", "img/pz_50.png", "img/nz_50.png"])
+// //envTexture.mapping = THREE.CubeReflectionMapping
+// envTexture.mapping = THREE.CubeRefractionMapping
+// material.envMap = envTexture
 
 const cube = new THREE.Mesh(boxGeometry, material)
 cube.position.x = 5
@@ -102,7 +102,7 @@ materialFolder.open()
 
 const data = {
     color: material.color.getHex(),
-    emissive: material.emissive.getHex(),
+    //emissive: material.emissive.getHex(),
 }
 
 const meshLambertMaterialFolder = gui.addFolder('THREE.MeshLambertMaterial')
@@ -110,11 +110,7 @@ const meshLambertMaterialFolder = gui.addFolder('THREE.MeshLambertMaterial')
 meshLambertMaterialFolder.addColor(data, 'color').onChange(() => {
     material.color.setHex(Number(data.color.toString().replace('#', '0x')))
 })
-meshLambertMaterialFolder.addColor(data, 'emissive').onChange(() => {
-    material.emissive.setHex(
-        Number(data.emissive.toString().replace('#', '0x'))
-    )
-})
+//meshLambertMaterialFolder.addColor(data, 'emissive').onChange(() => { material.emissive.setHex(Number(data.emissive.toString().replace('#', '0x'))) })
 meshLambertMaterialFolder.add(material, 'wireframe')
 meshLambertMaterialFolder.add(material, 'wireframeLinewidth', 0, 10)
 //meshLambertMaterialFolder.add(material, 'flatShading').onChange(() => updateMaterial())
